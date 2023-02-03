@@ -44,14 +44,7 @@
       bindings = <&kp SEMI>, <&kp COLON>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
-    es_angle_brackets: spanish_angle_brackets {
-      compatible = "zmk,behavior-mod-morph";
-      label = "SPANISH_ANGLE_BRACKETS";
-      #binding-cells = <0>;
-      bindings = <&kp LT>, <&kp GT>;
-      mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-    // angle brackets: < NUBS    > LS(NUBS)
+    // angle brackets: < GRAVE   > LS(GRAVE)
     // single quote:   ' MINUS   ? LS(MINUS)
     // double quote:   " EQUAL   ? LS(EQUAL)
   };
@@ -69,9 +62,9 @@
 //                    | ALT | LWR | RAI |   | RAI | LWR  | GUI | 
 //                            SPC | ENT |   | ENT | SPC  
       bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R     &kp T   &kp Y &kp U  &kp I     &kp O   &kp P             &kp BSPC
-   &kp LSHFT &kp A &kp S &kp D &lt KDP F &kp G   &kp H &kp J  &kp K     &kp L   &kp LC(RA(SQT))   &kp LC(RA(BSLH))
-   &kp LCTRL &kp Z &kp X &kp C &kp V     &kp B   &kp N &kp M  &escomma  &esdot  &kp SLASH &lt ADJ &es_angle_brackets
+   &kp TAB   &kp Q &kp W &kp E &kp R     &kp T   &kp Y &kp U  &kp I     &kp O   &kp P           &kp BSPC
+   &kp LSHFT &kp A &kp S &kp D &lt KDP F &kp G   &kp H &kp J  &kp K     &kp L   &kp LC(RA(SQT)) &kp LC(RA(BSLH))
+   &kp LCTRL &kp Z &kp X &kp C &kp V     &kp B   &kp N &kp M  &escomma  &esdot  &kp SLASH       &lt ADJ GRAVE
             &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
       >;
     };
@@ -98,12 +91,12 @@
 // | SHFT |  &  |  /  |  (  |  )  |  =  |   | XXX | XXX | XXX |  `  |  +  | XXX |
 // | \    | "|" |  @  |  #  |  ~  |  *  |   |  Ñ  | XXX | XXX |  ´  |  ç  | XXX |
 //                    | GUI | LWR | SPC |   | ENT | LWR | ALT |
-//                            SPC |               | SPC  
+//                            SPC |               | SPC   
       bindings = <
-   &kp ESC           &kp LS(N1)     &kp LS(N2)     &kp LS(N3)     &kp LS(N4)      &kp LS(N5)     &kp GRAVE &none   &none  &kp MINUS   &kp EQUAL &trans
-   &kp LSHFT         &kp LS(N6)     &kp LS(N7)     &kp LS(N8)     &kp LS(N9)      &kp LS(N0)     &none     &none   &none  &kp GRAVE &kp PLUS  &none
-   &kp LC(RA(GRAVE)) &kp LC(RA(N1)) &kp LC(RA(N2)) &kp LC(RA(N3)) &kp LC(RA(N4))  &kp LS(RBRC)   &kp SEMI  &none   &none  &kp SQT   &kp BSLH  &none
-                                                   &kp LGUI       &trans          &kp SPACE      &kp RET   &trans  &kp RALT
+   &kp ESC          &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(N4)  &kp LS(N5)     &kp NUBS &none   &none  &kp MINUS         &kp EQUAL &trans
+   &kp LSHFT        &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9)  &kp LS(N0)     &none    &none   &none  &kp LC(RA(GRAVE)) &kp PLUS  &none
+   &kp LC(RA(NUBS)) &kp RA(N1) &kp RA(N2) &kp RA(N3) &kp RA(N4)  &kp LS(RBRC)   &kp SEMI &none   &none  &kp SQT           &kp BSLH  &none
+                                          &kp LGUI   &trans      &kp SPACE      &kp RET  &trans  &kp RALT
       >;
     };
 
