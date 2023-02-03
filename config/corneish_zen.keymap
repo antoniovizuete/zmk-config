@@ -8,6 +8,7 @@
 #define DEF 0
 #define LOW 1
 #define RAI 2
+#define ADJ 3
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -29,27 +30,30 @@
 // -----------------------------------------------------------------------------------------
 // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
 // | SHFT |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+//   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
 // | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+//                    | ALT | LWR | RAI |   | RAI | LWR  | GUI |
+//                            SPC | ENT |   | ENT | SPC  
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
+   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC &kp RBRC
+   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp MINUS &lt ADJ LT
         &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
                         >;
                 };
                 lower_layer {
                         label = "LOWER";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      | 
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
+// | SHIFT| NON | NON | NON | NON | NON |   | INS | LFT |  UP | RGT |  [  | ]    | 
+// | SHFT | NON | NON | NON | NON | NON |   |     | HOM | DWN | END |     |      |
+//                    | ALT | LWR | RAI |   | RAI | LWR  | GUI |
+//                            SPC | ENT |   | ENT | SPC  
                         bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6      &kp N7   &kp N8   &kp N9    &kp N0 &kp BSPC
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &kp INSERT  &kp LEFT &kp UP   &kp RIGHT &trans &trans
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &trans      &kp HOME &kp DOWN &kp END    &trans &trans
-                          	        &trans       &trans       &trans         &lt RAI RET &trans   &kp RALT
+   &kp ESC    &kp N1  &kp N2  &kp N3  &kp N4  &kp N5     &kp N6      &kp N7   &kp N8   &kp N9    &kp N0   &kp BSPC
+   &kp LSHFT  &none   &none   &none   &none   &none      &kp INSERT  &kp LEFT &kp UP   &kp RIGHT &kp LBKT &kp RBKT
+   &none      &none   &none   &none   &none   &none      &trans      &kp HOME &kp DOWN &kp END   &trans   &trans
+                              &trans  &trans  &trans     &trans      &kp DEL  &trans
                         >;
                 };
 
