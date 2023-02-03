@@ -27,23 +27,26 @@
       compatible = "zmk,behavior-mod-morph";
       label = "SPANISH_COMMA";
       #binding-cells = <0>;
-      bindings = <&kp COMMA>, <&kp SEMI>;
+      bindings = <&kp COMMA>, <&kp LS(COMMA)>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
     esdot: spanish_dot {
       compatible = "zmk,behavior-mod-morph";
       label = "SPANISH_DOT";
       #binding-cells = <0>;
-      bindings = <&kp DOT>, <&kp COLON>;
+      bindings = <&kp DOT>, <&kp LS(DOT)>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
-    esangle: spanish_angle {
+    esntilde: spanish_ntilde {
       compatible = "zmk,behavior-mod-morph";
-      label = "SPANISH_ANGLE";
+      label = "SPANISH_NTILDE";
       #binding-cells = <0>;
-      bindings = <&kp LT>, <&kp GT>;
+      bindings = <&kp SEMI>, <&kp COLON>;
       mods = <(MOD_LSFT|MOD_RSFT)>;
     };
+    // angle brackets: < NUBS    > LS(NUBS)
+    // single quote:   ' MINUS   ? LS(MINUS)
+    // double quote:   " EQUAL   ? LS(EQUAL)
   };
 
   keymap {
@@ -53,15 +56,15 @@
       label = "BASE";
 // -----------------------------------------------------------------------------------------
 // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | SHFT |  A  |  S  |  D  | KPD |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// | SHFT |  A  |  S  |  D  | KPD |  G  |   |  H  |  J   |  K  |  L  |  {  | }    |
 //                          |  F  |
-// | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+// | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  -  | ADJ NUBS  |
 //                    | ALT | LWR | RAI |   | RAI | LWR  | GUI | 
 //                            SPC | ENT |   | ENT | SPC  
       bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R     &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LSHFT &kp A &kp S &kp D &lt KDP F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC &kp RBRC
-   &kp LCTRL &kp Z &kp X &kp C &kp V     &kp B   &kp N &kp M  &escomma  &esdot  &kp MINUS &lt ADJ &esangle
+   &kp TAB   &kp Q &kp W &kp E &kp R     &kp T   &kp Y &kp U  &kp I     &kp O   &kp P     &kp BSPC
+   &kp LSHFT &kp A &kp S &kp D &lt KDP F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC  &kp RBRC
+   &kp LCTRL &kp Z &kp X &kp C &kp V     &kp B   &kp N &kp M  &escomma  &esdot  &kp SLASH &lt ADJ NUBS
             &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
       >;
     };
