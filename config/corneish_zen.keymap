@@ -87,16 +87,16 @@
     raise_layer {
       label = "RAISE";
 // -----------------------------------------------------------------------------------------
-// | ESC  |  !  |  "  |  ·  |  $  |  %  |   |  º  | XXX | XXX |  '  |  ¡  | ___ | º  '¡ ?¿
+// | ESC  |  !  |  "  |  ·  |  $  |  %  |   |  º  | XXX | XXX |  '  |  ¡  | ___ | 
 // | SHFT |  &  |  /  |  (  |  )  |  =  |   | XXX | XXX | XXX |  `  |  +  | XXX |    
 // | \    | "|" |  @  |  #  |  ~  |  *  |   |  Ñ  | XXX | XXX |  ´  |  ç  | XXX | 
-//                    | GUI | LWR | SPC |   | ENT | LWR | ALT |
+//                    | GUI | LWR | SPC |   | ENT | LWR | ALT | 
 //                            SPC |               | SPC   
       bindings = <
-   &kp ESC      &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(N4) &kp LS(N5)     &kp NUBS &none   &none  &kp MINUS &kp EQUAL &trans
-   &kp LSHFT    &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9) &kp LS(N0)     &none    &none   &none  &kp LBKT  &kp LBKT  &none
-   &kp RA(NUBS) &kp RA(N1) &kp RA(N2) &kp RA(N3) &kp RA(N4) &kp LS(RBRC)   &kp SEMI &none   &none  &kp SQT   &kp BSLH  &none
-                                      &kp LGUI   &trans     &kp SPACE      &kp RET  &trans  &kp RALT
+   &kp ESC      &kp LS(N1) &kp LS(N2) &kp LS(N3) &kp LS(N4)   &kp LS(N5)     &kp NUBS &none   &none  &kp MINUS &kp EQUAL &trans
+   &kp LSHFT    &kp LS(N6) &kp LS(N7) &kp LS(N8) &kp LS(N9)   &kp LS(N0)     &none    &none   &none  &kp LBKT  &kp RBKT  &none
+   &kp RA(NUBS) &kp RA(N1) &kp RA(N2) &kp RA(N3) &kp RA(SEMI) &kp LS(RBRC)   &kp SEMI &none   &none  &kp SQT   &kp BSLH  &none
+                                      &kp LGUI   &trans       &kp SPACE      &kp RET  &trans  &kp RALT
       >;
     };
 
