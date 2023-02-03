@@ -85,6 +85,6 @@
 &none      &none        &none        &none        &none        &none          &none   &none   &none   &none   &none   &trans
                                      &none        &none        &none          &none   &none   &none
                         >;
-                }
+                };
         };
 };
