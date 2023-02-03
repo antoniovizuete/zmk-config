@@ -9,7 +9,7 @@
 #define LOW 1
 #define RAI 2
 #define ADJ 3
-#define SHF 4
+#define KDP 4
 
 
 #include <behaviors.dtsi>
@@ -21,19 +21,33 @@
     zmk,matrix_transform = &default_transform;
     //zmk,matrix_transform = &five_column_transform;
   };
+
+  behaviors {
+    escomma: spanish_comma {
+      compatible = "zmk,behavior-mod-morph";
+      label = "SPANISH_COMMA";
+      #binding-cells = <0>;
+      bindings = <&kp COMMA>, <&kp SEMI>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    esdot: spanish_dot {
+      compatible = "zmk,behavior-mod-morph";
+      label = "SPANISH_DOT";
+      #binding-cells = <0>;
+      bindings = <&kp DOT>, <&kp COLON>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+    esangle: spanish_angle {
+      compatible = "zmk,behavior-mod-morph";
+      label = "SPANISH_ANGLE";
+      #binding-cells = <0>;
+      bindings = <&kp LT>, <&kp GT>;
+      mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
+  };
 };
 
-/ {
-        behaviors {
-                escomma: spanish_comma {
-                        compatible = "zmk,behavior-mod-morph";
-                        label = "SPANISH_COMMA";
-                        #binding-cells = <0>;
-                        bindings = <&kp COMMA>, <&kp SEMI>;
-                        mods = <(MOD_LSFT|MOD_RSFT)>;
-                };
-        };
-};
+
 
 / {
         keymap {
@@ -43,30 +57,30 @@
                         label = "BASE";
 // -----------------------------------------------------------------------------------------
 // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | SHFT |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-//   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+// | SHFT |  A  |  S  |  D  | KPD |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+//                          |  F  |
 // | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | ALT | LWR | RAI |   | RAI | LWR  | GUI |
+//                    | ALT | LWR | RAI |   | RAI | LWR  | GUI | 
 //                            SPC | ENT |   | ENT | SPC  
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC &kp RBRC
-   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &escomma  &kp DOT &kp MINUS &lt ADJ LT
-        &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
+   &kp TAB   &kp Q &kp W &kp E &kp R     &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &kp LSHFT &kp A &kp S &kp D &lt KDP F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC &kp RBRC
+   &kp LCTRL &kp Z &kp X &kp C &kp V     &kp B   &kp N &kp M  &escomma  &esdot  &kp MINUS &lt ADJ &esangle
+            &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
                         >;
                 };
                 lower_layer {
                         label = "LOWER";
 // -----------------------------------------------------------------------------------------
 // |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | SHIFT| NON | NON | NON | NON | NON |   | INS | LFT |  UP | RGT |  [  | ]    | 
-// | SHFT | NON | NON | NON | NON | NON |   |     | HOM | DWN | END |     |      |
-//                    | ALT | LWR | RAI |   | RAI | LWR  | GUI |
+// | SHIFT| XXX | XXX | XXX | XXX | XXX |   | INS | LFT |  UP | RGT |  [  | ]    | 
+// | SHFT | XXX | XXX | XXX | XXX | XXX |   |     | HOM | DWN | END |     |      |
+//                    | ALT | LWR | RAI |   | RAI | LWR | GUI |
 //                            SPC | ENT |   | ENT | SPC  
                         bindings = <
    &kp ESC    &kp N1  &kp N2  &kp N3  &kp N4  &kp N5     &kp N6      &kp N7   &kp N8   &kp N9    &kp N0   &kp BSPC
    &kp LSHFT  &none   &none   &none   &none   &none      &kp INSERT  &kp LEFT &kp UP   &kp RIGHT &kp LBKT &kp RBKT
-   &trans      &none   &none   &none   &none   &none      &trans      &kp HOME &kp DOWN &kp END   &trans   &trans
+   &trans     &none   &none   &none   &none   &none      &trans      &kp HOME &kp DOWN &kp END   &trans   &trans
                               &trans  &trans  &trans     &trans      &kp DEL  &trans
                         >;
                 };
@@ -74,15 +88,16 @@
                 raise_layer {
                         label = "RAISE";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// | ESC  |  !  |  "  |  ^  |  $  |  %  |   | XXX | XXX | XXX |  '  | XXX | ___ | 
+// | SHFT |  &  |  /  |  (  |  )  |  =  |   | XXX | XXX | XXX |  `  |  +  | XXX |
+// | \    | "|" |  @  |  #  | XXX |  *  |   | XXX | XXX | ~   | XXX | XXX | XXX |
+//                    | GUI | LWR | SPC |   | ENT | LWR | ALT |
+//                            SPC |               | SPC  
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
-                    	     &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+   &kp ESC   &kp EXCL &kp DQT   &kp CARET &kp DLLR &kp PRCNT     &none    &none   &none     &kp SQT   &none    &trans
+   &kp LSHFT &kp AMPS &kp SLASH &kp LPAR  &kp RPAR &kp EQUAL     &none    &none   &none     &kp GRAVE &kp PLUS &none
+   &kp BSLH  &kp PIPE &kp AT    &kp HAS   &none    &kp ASTRK     &none    &none   &kp TILDE &kp RBRC  &none    &none
+                                    &kp LGUI  &trans   &kp SPACE     &kp RET  &trans  &kp RALT
                         >;
                 };
 
@@ -90,9 +105,9 @@
                         label = "ADJUST";
 // -----------------------------------------------------------------------------------------
 // |  F1  |  F2 |  F3 |  F4 |  F5 |  F6 |   |  F7 |  F8 |  F9 | F10 | F11 | F12 |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | NON | NON | NON | NON | NON | NON |
-// | NON  | NON | NON | NON | NON | NON |   | NON | NON | NON | NON | NON | ___ |
-//                    | NON | NON | NON |   | NON | NON | NON |
+// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | XXX | XXX | XXX | XXX | XXX | XXX |
+// | XXX  | XXX | XXX | XXX | XXX | XXX |   | XXX | XXX | XXX | XXX | XXX | ___ |
+//                    | XXX | XXX | XXX |   | XXX | XXX | XXX |
                         bindings = <
 &kp F1     &kp F2       &kp F3       &kp F4       &kp F5       &kp F6         &kp F7  &kp F8  &kp F9  &kp F10 &kp F11 &kp F12
 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &none   &none   &none   &none   &none   &none
@@ -101,20 +116,18 @@
                         >;
                 };
 
-                shift_layer {
-                        label = "SHIFT";
+                keypad_layer {
+                        label = "KEYPAD";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | SHFT |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-//   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-// | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ;  |  .  |  /  | ESC  |
-//                    | ALT | LWR | RAI |   | RAI | LWR  | GUI |
-//                            SPC | ENT |   | ENT | SPC  
+// | XXX | XXX | XXX | XXX | XXX | XXX    |   | XXX |  7  |  8  |  9  | XXX | ________ |
+// | XXX | XXX | XXX | XXX | XXX | XXX    |   |  /  |  4  |  5  |  6  |  +  | NUM_LOCK |
+// | XXX | XXX | XXX | XXX | XXX | XXX    |   |  *  |  1  |  2  |  3  |  -  | XXXXXXXX |
+//                   | ALT | SPC | KP_ENT |   |  .  |  0  | GUI |
                         bindings = <
-   &kp TAB   &kp LS(Q) &kp LS(W) &kp LS(E) &kp LS(R) &kp LS(T)   &kp LS(Y) &kp LS(U)  &kp LS(I)  &kp LS(O)    &kp LS(P)    &kp BSPC
-   &kp LSHFT &kp LS(A) &kp LS(S) &kp LS(D) &kp LS(F) &kp LS(G)   &kp LS(H) &kp LS(J)  &kp LS(K)  &kp LS(L)    &kp LBRC &kp RBRC
-   &kp LCTRL &kp LS(Z) &kp LS(X) &kp LS(C) &kp LS(V) &kp LS(B)   &kp LS(N) &kp LS(M)  &kp SEMI   &kp LS(SEMI) &kp UNDER &kp GT
-        &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
+        &none   &none   &none   &none   &none   &none             &none           &kp KP_N7  &kp KP_N8  &kp KP_N9  &none        &trans
+        &none   &none   &none   &none   &none   &none             &kp KP_SLASH    &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_PLUS  &kp KP_NLCK
+        &none   &none   &none   &none   &none   &none             &kp KP_ASTERISK &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_MINUS &none
+                                &trans  &trans  &kp KP_ENTER      &kp KP_DOT      &kp KP_N0  &kp LGUI
                         >;
                 };
         };
