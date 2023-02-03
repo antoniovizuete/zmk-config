@@ -24,6 +24,18 @@
 };
 
 / {
+        behaviors {
+                escomma: spanish_comma {
+                        compatible = "zmk,behavior-mod-morph";
+                        label = "SPANISH_COMMA";
+                        #binding-cells = <0>;
+                        bindings = <&kp COMMA>, <&kp SEMI>;
+                        mods = <(MOD_LSFT|MOD_RSFT)>;
+                };
+        };
+};
+
+/ {
         keymap {
                 compatible = "zmk,keymap";
 
@@ -38,8 +50,8 @@
 //                            SPC | ENT |   | ENT | SPC  
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &mo SHF   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC &kp RBRC
-   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp MINUS &lt ADJ LT
+   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC &kp RBRC
+   &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &escomma  &kp DOT &kp MINUS &lt ADJ LT
         &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
                         >;
                 };
