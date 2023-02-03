@@ -9,6 +9,8 @@
 #define LOW 1
 #define RAI 2
 #define ADJ 3
+#define SHF 4
+
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
@@ -36,7 +38,7 @@
 //                            SPC | ENT |   | ENT | SPC  
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC &kp RBRC
+   &mo SHF   &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp LBRC &kp RBRC
    &kp LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp MINUS &lt ADJ LT
         &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
                         >;
@@ -52,7 +54,7 @@
                         bindings = <
    &kp ESC    &kp N1  &kp N2  &kp N3  &kp N4  &kp N5     &kp N6      &kp N7   &kp N8   &kp N9    &kp N0   &kp BSPC
    &kp LSHFT  &none   &none   &none   &none   &none      &kp INSERT  &kp LEFT &kp UP   &kp RIGHT &kp LBKT &kp RBKT
-   &none      &none   &none   &none   &none   &none      &trans      &kp HOME &kp DOWN &kp END   &trans   &trans
+   &tras      &none   &none   &none   &none   &none      &trans      &kp HOME &kp DOWN &kp END   &trans   &trans
                               &trans  &trans  &trans     &trans      &kp DEL  &trans
                         >;
                 };
@@ -66,8 +68,8 @@
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
+   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
+   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
                     	     &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
                         >;
                 };
@@ -84,6 +86,23 @@
 &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &none   &none   &none   &none   &none   &none
 &none      &none        &none        &none        &none        &none          &none   &none   &none   &none   &none   &trans
                                      &none        &none        &none          &none   &none   &none
+                        >;
+                };
+
+                shift_layer {
+                        label = "SHIFT";
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+// | SHFT |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+//   &kp LSHFT &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+// | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ;  |  .  |  /  | ESC  |
+//                    | ALT | LWR | RAI |   | RAI | LWR  | GUI |
+//                            SPC | ENT |   | ENT | SPC  
+                        bindings = <
+   &kp TAB   &kp LS(Q) &kp LS(W) &kp LS(E) &kp LS(R) &kp LS(T)   &kp LS(Y) &kp LS(U)  &kp LS(I)  &kp LS(O)    &kp LS(P)    &kp BSPC
+   &kp LSHFT &kp LS(A) &kp LS(S) &kp LS(D) &kp LS(F) &kp LS(G)   &kp LS(H) &kp LS(J)  &kp LS(K)  &kp LS(L)    &kp LBRC &kp RBRC
+   &kp LCTRL &kp LS(Z) &kp LS(X) &kp LS(C) &kp LS(V) &kp LS(B)   &kp LS(N) &kp LS(M)  &kp SEMI   &kp LS(SEMI) &kp UNDER &kp GT
+        &kp LALT &lt LOW SPACE &lt RAI RET   &lt RAI RET &lt LOW SPACE &kp LGUI
                         >;
                 };
         };
