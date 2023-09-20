@@ -86,7 +86,7 @@
             label = "ZMK_center_window";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(LA(E))>;
+            bindings = <&kp LC(LA(C))>;
       };
   };
 
