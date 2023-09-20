@@ -68,8 +68,8 @@
             label = "ZMK_wtr";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LC(LA(RIGHT))>  
-      }
+            bindings = <&kp LC(LA(RIGHT))>;
+      };
   };
 
   keymap {
